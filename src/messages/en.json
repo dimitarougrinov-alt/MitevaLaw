@@ -16,7 +16,7 @@
     "hero": {
       "overline": "Adv. Dr. Ani Miteva",
       "title": "Legal Heights.\nConquered with Precision.",
-      "essence": "Every legal challenge is a summit. And every summit can be reached.",
+      "essence": "Navigate complex legal terrain with confidence.",
       "cta": "Get in touch",
       "ctaSecondary": "Practice Areas"
     },
@@ -58,6 +58,23 @@
     "cta": {
       "title": "Ready to conquer your legal challenge together?",
       "button": "Get in touch"
+    },
+    "photoGrid": {
+      "mountains": {
+        "overline": "Law & Life",
+        "title": "Every summit\ncan be reached",
+        "subtitle": "15+ years of experience"
+      },
+      "library": {
+        "overline": "30+ Publications",
+        "title": "Academic\nDepth",
+        "subtitle": "Research papers & monographs"
+      },
+      "university": {
+        "overline": "Sofia University",
+        "title": "Faculty\nof Law",
+        "subtitle": "Senior Assistant, since 2019"
+      }
     }
   },
   "about": {
@@ -253,7 +270,8 @@
     }
   },
   "footer": {
-    "tagline": "Every legal challenge is a summit. And every summit can be reached.",
+    "tagline": "Navigate complex legal terrain with confidence.",
+    "info": "Info",
     "copyright": "All rights reserved.",
     "location": "Sofia, Bulgaria"
   }

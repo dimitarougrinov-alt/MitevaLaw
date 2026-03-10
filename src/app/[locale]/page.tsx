@@ -11,6 +11,8 @@ import PolicyIcon from '@mui/icons-material/Policy';
 import BiotechIcon from '@mui/icons-material/Biotech';
 import NavButton from '@/components/ui/NavButton';
 import AnimateIn from '@/components/ui/AnimateIn';
+import HeroSection from '@/components/home/HeroSection';
+import PhotoContextGrid from '@/components/home/PhotoContextGrid';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -23,6 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const practiceIcons = [GavelIcon, AccountBalanceIcon, PolicyIcon, BiotechIcon];
 const practiceKeys = ['tax', 'financial', 'admin', 'bioethics'] as const;
+const practiceCardAccents = ['#5299C8', '#3A78A8', '#6BB8D8', '#4E9B8A'];
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -32,199 +35,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <>
       {/* ── HERO ── */}
-      <Box
-        sx={{
-          bgcolor: '#EFF3F8',
-          position: 'relative',
-          overflow: 'hidden',
-          pt: { xs: 10, md: 14 },
-          pb: { xs: 12, md: 20 },
-        }}
-      >
-        {/* Topographic background lines */}
-        <Box
-          aria-hidden
-          sx={{
-            position: 'absolute',
-            inset: 0,
-            opacity: 0.035,
-            backgroundImage: `
-              repeating-linear-gradient(
-                -35deg,
-                transparent,
-                transparent 48px,
-                #1B3050 48px,
-                #1B3050 49px
-              )
-            `,
-            pointerEvents: 'none',
-          }}
-        />
-        {/* Gradient overlays */}
-        <Box
-          aria-hidden
-          sx={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: `
-              radial-gradient(ellipse 70% 80% at 5% 50%, rgba(27,48,80,0.05) 0%, transparent 55%),
-              radial-gradient(ellipse 50% 60% at 90% 15%, rgba(82,153,200,0.06) 0%, transparent 50%)
-            `,
-            pointerEvents: 'none',
-          }}
-        />
-        {/* Corner accent */}
-        <Box
-          aria-hidden
-          sx={{
-            position: 'absolute',
-            bottom: { xs: 32, md: 56 },
-            right: { xs: 20, md: 72 },
-            width: { xs: 50, md: 80 },
-            height: { xs: 50, md: 80 },
-            borderRight: '1px solid rgba(27,48,80,0.13)',
-            borderBottom: '1px solid rgba(27,48,80,0.13)',
-            pointerEvents: 'none',
-          }}
-        />
-        <Box
-          aria-hidden
-          sx={{
-            position: 'absolute',
-            top: { xs: 24, md: 48 },
-            left: { xs: 20, md: 72 },
-            width: { xs: 40, md: 64 },
-            height: { xs: 40, md: 64 },
-            borderLeft: '1px solid rgba(27,48,80,0.1)',
-            borderTop: '1px solid rgba(27,48,80,0.1)',
-            pointerEvents: 'none',
-          }}
-        />
-
-        <Container maxWidth="lg" sx={{ px: { xs: 3, md: 5 }, position: 'relative' }}>
-          <Grid container alignItems="center" spacing={{ xs: 6, md: 10 }}>
-            <Grid size={{ xs: 12, md: 6 }}>
-              {/* Overline */}
-              <Typography
-                component="p"
-                variant="overline"
-                sx={{
-                  color: 'secondary.main',
-                  letterSpacing: '0.22em',
-                  mb: 3,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1.5,
-                  '&::before': {
-                    content: '""',
-                    display: 'inline-block',
-                    width: 28,
-                    height: 1,
-                    bgcolor: 'secondary.main',
-                    flexShrink: 0,
-                  },
-                }}
-              >
-                {t('hero.overline')}
-              </Typography>
-
-              {/* Main headline */}
-              <Typography
-                component="h1"
-                sx={{
-                  fontFamily: 'var(--font-cormorant), serif',
-                  fontSize: { xs: '2.75rem', sm: '3.5rem', md: '4rem', lg: '4.75rem' },
-                  fontWeight: 400,
-                  lineHeight: { xs: 1.1, md: 1.06 },
-                  letterSpacing: '-0.02em',
-                  color: 'text.primary',
-                  mb: 4,
-                  whiteSpace: 'pre-line',
-                }}
-              >
-                {t('hero.title')}
-              </Typography>
-
-              {/* Divider line */}
-              <Box sx={{ width: 40, height: '1px', bgcolor: 'secondary.main', mb: 4, opacity: 0.7 }} />
-
-              {/* Essence tagline */}
-              <Typography
-                variant="body1"
-                sx={{ color: 'text.secondary', mb: 5, maxWidth: 460, lineHeight: 1.8, fontStyle: 'italic', fontFamily: 'var(--font-cormorant), serif', fontSize: '1.25rem' }}
-              >
-                {t('hero.essence')}
-              </Typography>
-
-              <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-                <NavButton
-                  
-                  href="/contact"
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                >
-                  {t('hero.cta')}
-                </NavButton>
-                <NavButton
-                  
-                  href="/practice"
-                  variant="outlined"
-                  color="primary"
-                  size="large"
-                >
-                  {t('hero.ctaSecondary')}
-                </NavButton>
-              </Box>
-            </Grid>
-
-            {/* Hero photo */}
-            <Grid size={{ xs: 12, md: 6 }}>
-              <Box
-                sx={{
-                  position: 'relative',
-                  height: { xs: 340, sm: 420, md: 560 },
-                }}
-              >
-                {/* Decorative gold border offset */}
-                <Box
-                  aria-hidden
-                  sx={{
-                    position: 'absolute',
-                    top: 16,
-                    left: 16,
-                    right: -8,
-                    bottom: -8,
-                    border: '1px solid',
-                    borderColor: 'secondary.main',
-                    opacity: 0.4,
-                    borderRadius: '2px',
-                    pointerEvents: 'none',
-                  }}
-                />
-                <Box
-                  sx={{
-                    position: 'relative',
-                    borderRadius: '2px',
-                    overflow: 'hidden',
-                    height: '100%',
-                    border: '1px solid #C8D6E8',
-                  }}
-                >
-                  <Image
-                    src="/images/ani-2.jpg"
-                    alt="Адв. д-р Ани Митева"
-                    fill
-                    style={{ objectFit: 'cover', objectPosition: 'center top' }}
-                    priority
-                    unoptimized
-                  />
-                </Box>
-              </Box>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
+      <HeroSection
+        overline={t('hero.overline')}
+        title={t('hero.title')}
+        essence={t('hero.essence')}
+        cta={t('hero.cta')}
+        ctaSecondary={t('hero.ctaSecondary')}
+      />
 
       {/* ── CREDENTIALS STRIP ── */}
       <Box
@@ -346,160 +163,331 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </Container>
       </Box>
 
-      {/* ── PRACTICE AREAS ── */}
-      <Box sx={{ py: { xs: 10, md: 16 }, bgcolor: '#EFF3F8', position: 'relative', overflow: 'hidden' }}>
-        <Box
-          aria-hidden
-          sx={{
-            position: 'absolute',
-            inset: 0,
-            opacity: 0.025,
-            backgroundImage: `
-              repeating-linear-gradient(
-                -35deg,
-                transparent,
-                transparent 48px,
-                #1B3050 48px,
-                #1B3050 49px
-              )
-            `,
-            pointerEvents: 'none',
-          }}
-        />
-        <Container maxWidth="lg" sx={{ px: { xs: 3, md: 5 }, position: 'relative' }}>
-          <AnimateIn>
-          <Box sx={{ mb: { xs: 7, md: 10 }, maxWidth: 520 }}>
-            <Typography
-              component="p"
-              variant="overline"
+      {/* ── PRACTICE + QUOTE (MERGED SPLIT) ── */}
+      <Box sx={{ overflow: 'hidden' }}>
+        <Grid container sx={{ alignItems: 'stretch' }}>
+
+          {/* ── LEFT: atmospheric photo + quote ── */}
+          <Grid size={{ xs: 12, md: 5 }}>
+            <Box sx={{ position: 'relative', minHeight: { xs: 360, md: '100%' }, overflow: 'hidden' }}>
+              {/* Photo */}
+              <Image
+                src="/images/ani-1.jpg"
+                alt="Адв. д-р Ани Митева"
+                fill
+                style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
+                unoptimized
+              />
+
+              {/* Dark gradient overlay – heavy at bottom for text legibility */}
+              <Box
+                aria-hidden
+                sx={{
+                  position: 'absolute',
+                  inset: 0,
+                  background:
+                    'linear-gradient(to top, rgba(10,20,38,0.97) 0%, rgba(22,40,66,0.65) 45%, rgba(27,48,80,0.22) 100%)',
+                  zIndex: 1,
+                }}
+              />
+
+              {/* Subtle topographic texture over photo */}
+              <Box
+                aria-hidden
+                sx={{
+                  position: 'absolute',
+                  inset: 0,
+                  opacity: 0.045,
+                  backgroundImage: `
+                    repeating-linear-gradient(
+                      -35deg,
+                      transparent,
+                      transparent 48px,
+                      #5299C8 48px,
+                      #5299C8 49px
+                    )
+                  `,
+                  zIndex: 1,
+                  pointerEvents: 'none',
+                }}
+              />
+
+              {/* Quote block pinned to bottom */}
+              <AnimateIn
+                sx={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  p: { xs: 4, md: 5 },
+                  zIndex: 2,
+                }}
+              >
+                {/* Accent lines */}
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, mb: 3 }}>
+                  <Box sx={{ width: 32, height: '1px', bgcolor: 'rgba(82,153,200,0.75)' }} />
+                  <Box sx={{ width: 14, height: '1px', bgcolor: 'rgba(239,243,248,0.25)' }} />
+                </Box>
+
+                {/* Decorative quotation mark */}
+                <Typography
+                  aria-hidden
+                  sx={{
+                    fontFamily: 'var(--font-cormorant), serif',
+                    fontSize: { xs: '3.5rem', md: '5rem' },
+                    lineHeight: 0.6,
+                    color: 'rgba(82,153,200,0.3)',
+                    mb: 1.5,
+                    display: 'block',
+                  }}
+                >
+                  "
+                </Typography>
+
+                <Typography
+                  sx={{
+                    fontFamily: 'var(--font-cormorant), serif',
+                    fontSize: { xs: '1.55rem', sm: '1.8rem', md: '2rem' },
+                    fontWeight: 400,
+                    lineHeight: 1.32,
+                    fontStyle: 'italic',
+                    color: '#EFF3F8',
+                    mb: 2.5,
+                  }}
+                >
+                  {t('hero.essence')}
+                </Typography>
+
+                {/* Attribution */}
+                <Typography
+                  component="p"
+                  variant="overline"
+                  sx={{
+                    color: 'rgba(82,153,200,0.65)',
+                    letterSpacing: '0.22em',
+                    fontSize: '0.6rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
+                    '&::before': {
+                      content: '""',
+                      display: 'inline-block',
+                      width: 16,
+                      height: 1,
+                      bgcolor: 'rgba(82,153,200,0.5)',
+                      flexShrink: 0,
+                    },
+                  }}
+                >
+                  {t('hero.overline')}
+                </Typography>
+              </AnimateIn>
+            </Box>
+          </Grid>
+
+          {/* ── RIGHT: practice content on white ── */}
+          <Grid size={{ xs: 12, md: 7 }}>
+            <Box
               sx={{
-                color: 'secondary.main',
-                letterSpacing: '0.22em',
-                mb: 2.5,
+                bgcolor: '#FFFFFF',
+                py: { xs: 7, md: 11 },
+                px: { xs: 4, md: 7 },
+                height: '100%',
                 display: 'flex',
-                alignItems: 'center',
-                gap: 1.5,
+                flexDirection: 'column',
+                justifyContent: 'center',
+                position: 'relative',
                 '&::before': {
                   content: '""',
-                  display: 'inline-block',
-                  width: 24,
-                  height: 1,
-                  bgcolor: 'secondary.main',
-                  flexShrink: 0,
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  bottom: 0,
+                  width: '1px',
+                  bgcolor: 'rgba(200,214,232,0.6)',
+                  display: { xs: 'none', md: 'block' },
                 },
               }}
             >
-              {t('practice.overline')}
-            </Typography>
-            <Typography variant="h2" sx={{ mb: 2, lineHeight: 1.1 }}>
-              {t('practice.title')}
-            </Typography>
-            <Typography variant="body1" color="text.secondary">
-              {t('practice.subtitle')}
-            </Typography>
-          </Box>
-          </AnimateIn>
+              <AnimateIn>
+                <Typography
+                  component="p"
+                  variant="overline"
+                  sx={{
+                    color: 'secondary.main',
+                    letterSpacing: '0.22em',
+                    mb: 2.5,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1.5,
+                    '&::before': {
+                      content: '""',
+                      display: 'inline-block',
+                      width: 24,
+                      height: 1,
+                      bgcolor: 'secondary.main',
+                      flexShrink: 0,
+                    },
+                  }}
+                >
+                  {t('practice.overline')}
+                </Typography>
+                <Typography variant="h2" sx={{ mb: 2, lineHeight: 1.1 }}>
+                  {t('practice.title')}
+                </Typography>
+                <Typography variant="body1" color="text.secondary" sx={{ mb: 5, maxWidth: 480 }}>
+                  {t('practice.subtitle')}
+                </Typography>
+              </AnimateIn>
 
-          <Grid container spacing={2}>
-            {practiceKeys.map((key, i) => {
-              const Icon = practiceIcons[i];
-              return (
-                <Grid key={key} size={{ xs: 12, sm: 6, md: 3 }}>
-                  <AnimateIn delay={i * 80}>
-                  <Box
-                    sx={{
-                      p: 3.5,
-                      height: '100%',
-                      bgcolor: 'background.paper',
-                      border: '1px solid #C8D6E8',
-                      borderRadius: '2px',
-                      transition: 'all 0.25s ease',
-                      '&:hover': {
-                        boxShadow: '0 8px 32px rgba(27,48,80,0.09)',
-                        transform: 'translateY(-4px)',
-                        borderColor: 'rgba(82,153,200,0.4)',
-                      },
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        width: 44,
-                        height: 44,
-                        border: '1px solid #C8D6E8',
-                        borderRadius: '2px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        mb: 2.5,
-                        color: 'primary.main',
-                        transition: 'border-color 0.2s ease',
-                        '.MuiBox-root:hover &': {
-                          borderColor: 'secondary.main',
-                        },
-                      }}
-                    >
-                      <Icon sx={{ fontSize: 20 }} />
-                    </Box>
-                    <Typography variant="h6" sx={{ mb: 1.5, fontSize: '1.1rem' }}>
-                      {t(`practice.${key}.title`)}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.75 }}>
-                      {t(`practice.${key}.description`)}
-                    </Typography>
-                  </Box>
-                  </AnimateIn>
-                </Grid>
-              );
-            })}
+              {/* 2 × 2 card grid */}
+              <Grid container spacing={2} sx={{ mb: 5 }}>
+                {practiceKeys.map((key, i) => {
+                  const Icon = practiceIcons[i];
+                  return (
+                    <Grid key={key} size={{ xs: 12, sm: 6 }}>
+                      <AnimateIn delay={i * 75}>
+                        <Box
+                          sx={{
+                            p: 3,
+                            height: '100%',
+                            bgcolor: '#FAFBFD',
+                            border: '1px solid #C8D6E8',
+                            borderLeft: `3px solid ${practiceCardAccents[i]}`,
+                            borderRadius: '2px',
+                            transition: 'all 0.25s ease',
+                            '&:hover': {
+                              boxShadow: `0 8px 28px rgba(27,48,80,0.09)`,
+                              transform: 'translateY(-3px)',
+                              borderColor: practiceCardAccents[i],
+                              borderLeftColor: practiceCardAccents[i],
+                            },
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              width: 40,
+                              height: 40,
+                              bgcolor: `${practiceCardAccents[i]}14`,
+                              border: `1px solid ${practiceCardAccents[i]}38`,
+                              borderRadius: '2px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              mb: 2,
+                              color: practiceCardAccents[i],
+                              transition: 'all 0.2s ease',
+                              '.MuiBox-root:hover &': {
+                                bgcolor: `${practiceCardAccents[i]}22`,
+                              },
+                            }}
+                          >
+                            <Icon sx={{ fontSize: 18 }} />
+                          </Box>
+                          <Typography variant="h6" sx={{ mb: 1, fontSize: '1rem', fontWeight: 600 }}>
+                            {t(`practice.${key}.title`)}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.72 }}>
+                            {t(`practice.${key}.description`)}
+                          </Typography>
+                        </Box>
+                      </AnimateIn>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+
+              <NavButton href="/practice" variant="outlined" color="primary" size="large">
+                {tCommon('learnMore')}
+              </NavButton>
+            </Box>
           </Grid>
 
-          <Box sx={{ mt: 6, textAlign: 'center' }}>
-            <NavButton  href="/practice" variant="outlined" color="primary" size="large">
-              {tCommon('learnMore')}
-            </NavButton>
-          </Box>
-        </Container>
+        </Grid>
       </Box>
+
+      {/* ── PHOTO CONTEXT GRID ── */}
+      <PhotoContextGrid
+        items={[
+          {
+            src: '/images/mountain-peaks.jpg',
+            alt: 'Alpine mountain peaks',
+            overline: t('photoGrid.mountains.overline'),
+            title: t('photoGrid.mountains.title'),
+            subtitle: t('photoGrid.mountains.subtitle'),
+            accentColor: '#7BBFE0',
+          },
+          {
+            src: '/images/law-library.jpg',
+            alt: 'Law library',
+            overline: t('photoGrid.library.overline'),
+            title: t('photoGrid.library.title'),
+            subtitle: t('photoGrid.library.subtitle'),
+            accentColor: '#C9A96A',
+          },
+          {
+            src: '/images/sofia-university.jpg',
+            alt: 'Sofia University',
+            overline: t('photoGrid.university.overline'),
+            title: t('photoGrid.university.title'),
+            subtitle: t('photoGrid.university.subtitle'),
+            accentColor: '#9ECFE8',
+          },
+        ]}
+      />
 
       {/* ── CTA BANNER ── */}
       <Box
         sx={{
           py: { xs: 10, md: 14 },
-          bgcolor: '#1B3050',
           position: 'relative',
           overflow: 'hidden',
         }}
       >
+        {/* Mountain photo background */}
+        <Box
+          sx={{
+            position: 'absolute',
+            inset: 0,
+          }}
+        >
+          <Image
+            src="/images/mountain-peaks.jpg"
+            alt=""
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center 65%' }}
+            unoptimized
+          />
+        </Box>
+
+        {/* Deep navy overlay */}
+        <Box
+          aria-hidden
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'linear-gradient(160deg, rgba(11,22,40,0.92) 0%, rgba(27,48,80,0.85) 50%, rgba(16,32,56,0.92) 100%)',
+            zIndex: 1,
+          }}
+        />
+
+        {/* Colour shimmer overlay */}
         <Box
           aria-hidden
           sx={{
             position: 'absolute',
             inset: 0,
             backgroundImage: `
-              radial-gradient(ellipse 50% 80% at 90% 50%, rgba(82,153,200,0.1) 0%, transparent 60%),
-              radial-gradient(ellipse 40% 60% at 10% 50%, rgba(42,75,117,0.5) 0%, transparent 60%)
+              radial-gradient(ellipse 55% 80% at 85% 50%, rgba(82,153,200,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse 45% 60% at 15% 50%, rgba(42,75,117,0.3) 0%, transparent 60%)
             `,
+            zIndex: 2,
             pointerEvents: 'none',
           }}
         />
-        {/* Mountain silhouette */}
-        <Box
-          aria-hidden
-          sx={{
-            position: 'absolute',
-            bottom: 0,
-            right: 0,
-            width: { xs: 200, md: 360 },
-            height: { xs: 120, md: 200 },
-            opacity: 0.05,
-            pointerEvents: 'none',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 360 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 200 L120 60 L180 110 L240 30 L360 200' fill='%23EFF3F8'/%3E%3C/svg%3E")`,
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'bottom right',
-          }}
-        />
-        <Container maxWidth="md" sx={{ px: { xs: 3, md: 5 }, position: 'relative', textAlign: 'center' }}>
+
+        <Container maxWidth="md" sx={{ px: { xs: 3, md: 5 }, position: 'relative', textAlign: 'center', zIndex: 3 }}>
           <AnimateIn>
           <Typography
             sx={{
@@ -515,7 +503,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             {t('cta.title')}
           </Typography>
           <NavButton
-            
             href="/contact"
             variant="outlined"
             size="large"

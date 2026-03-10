@@ -84,7 +84,7 @@ export default function Footer() {
               variant="overline"
               sx={{ color: 'rgba(239,243,248,0.38)', display: 'block', mb: 2.5, letterSpacing: '0.16em' }}
             >
-              Info
+              {tf('info')}
             </Typography>
             <Box component="ul" sx={{ listStyle: 'none', p: 0, m: 0, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               {([

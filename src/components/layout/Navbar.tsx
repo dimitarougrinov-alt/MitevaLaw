@@ -20,10 +20,10 @@ import LocaleSwitcher from './LocaleSwitcher';
 import Logo from '@/components/ui/Logo';
 
 const navLinks = [
-  { key: 'home', href: '/' as const },
-  { key: 'about', href: '/about' as const },
-  { key: 'practice', href: '/practice' as const },
-  { key: 'academic', href: '/academic' as const },
+  { key: 'home',     href: '/'         },
+  { key: 'about',    href: '/about'    },
+  { key: 'practice', href: '/practice' },
+  { key: 'academic', href: '/academic' },
 ] as const;
 
 export default function Navbar() {
@@ -33,7 +33,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24);
+    const handleScroll = () => setScrolled(window.scrollY > 32);
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -44,12 +44,12 @@ export default function Navbar() {
       <AppBar
         position="fixed"
         sx={{
-          transition: 'background-color 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease',
-          bgcolor: scrolled ? 'rgba(239,243,248,0.97)' : 'rgba(239,243,248,0)',
-          backdropFilter: scrolled ? 'blur(14px)' : 'blur(0px)',
+          transition: 'background-color 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease',
+          bgcolor: scrolled ? 'rgba(9,18,32,0.93)' : 'rgba(9,18,32,0.0)',
+          backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'blur(0px)',
           borderBottom: '1px solid',
-          borderColor: scrolled ? 'rgba(200,214,232,0.9)' : 'transparent',
-          boxShadow: 'none',
+          borderColor: scrolled ? 'rgba(82,153,200,0.14)' : 'transparent',
+          boxShadow: scrolled ? '0 4px 32px rgba(0,0,0,0.3)' : 'none',
         }}
       >
         <Toolbar
@@ -58,14 +58,14 @@ export default function Navbar() {
             mx: 'auto',
             width: '100%',
             px: { xs: 2.5, md: 5 },
-            minHeight: { xs: '72px !important', md: '96px !important' },
+            minHeight: { xs: '72px !important', md: '88px !important' },
             gap: 1,
           }}
         >
-          {/* Logo */}
+          {/* Logo – always light on the dark nav */}
           <Box sx={{ flex: 1, display: 'flex', alignItems: 'center' }}>
             <Link href="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
-              <Logo size="md" />
+              <Logo color="#EFF3F8" size="md" />
             </Link>
           </Box>
 
@@ -80,29 +80,30 @@ export default function Navbar() {
                   href={href}
                   disableRipple
                   sx={{
-                    color: isActive ? 'primary.main' : 'text.primary',
-                    fontWeight: isActive ? 600 : 400,
+                    color: isActive ? '#5299C8' : 'rgba(239,243,248,0.70)',
+                    fontWeight: isActive ? 500 : 400,
                     fontSize: '0.8125rem',
                     px: 1.75,
                     py: 1,
                     borderRadius: '2px',
-                    letterSpacing: '0.05em',
+                    letterSpacing: '0.06em',
                     position: 'relative',
+                    transition: 'color 0.2s ease',
                     '&::after': {
                       content: '""',
                       position: 'absolute',
-                      bottom: 6,
+                      bottom: 5,
                       left: '50%',
                       transform: 'translateX(-50%)',
-                      width: isActive ? '16px' : '0px',
+                      width: isActive ? '14px' : '0px',
                       height: '1px',
-                      bgcolor: 'secondary.main',
+                      bgcolor: '#5299C8',
                       transition: 'width 0.2s ease',
                     },
                     '&:hover': {
                       bgcolor: 'transparent',
-                      color: 'primary.main',
-                      '&::after': { width: '16px' },
+                      color: '#EFF3F8',
+                      '&::after': { width: '14px' },
                     },
                   }}
                 >
@@ -114,29 +115,54 @@ export default function Navbar() {
 
           {/* Right: locale switcher + CTA + hamburger */}
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 1.5 }}>
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            {/* Locale switcher – override MUI theme colors for dark bg */}
+            <Box
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                '& .MuiButton-root': {
+                  color: 'rgba(239,243,248,0.5)',
+                  '&:hover': { color: 'rgba(239,243,248,0.85)', bgcolor: 'transparent' },
+                },
+              }}
+            >
               <LocaleSwitcher />
             </Box>
+
+            {/* Contact CTA – ghost outlined on dark */}
             <Button
               component={Link}
               href="/contact"
-              variant="contained"
-              color="primary"
+              variant="outlined"
               size="small"
-              sx={{ display: { xs: 'none', md: 'inline-flex' }, whiteSpace: 'nowrap' }}
+              sx={{
+                display: { xs: 'none', md: 'inline-flex' },
+                whiteSpace: 'nowrap',
+                color: 'rgba(239,243,248,0.85)',
+                borderColor: 'rgba(239,243,248,0.28)',
+                borderWidth: '1px',
+                fontSize: '0.8125rem',
+                letterSpacing: '0.04em',
+                '&:hover': {
+                  borderColor: 'rgba(239,243,248,0.7)',
+                  bgcolor: 'rgba(239,243,248,0.06)',
+                  color: '#EFF3F8',
+                },
+              }}
             >
               {t('contact')}
             </Button>
+
+            {/* Mobile hamburger */}
             <IconButton
               onClick={() => setDrawerOpen(true)}
               aria-label="меню"
               sx={{
                 display: { lg: 'none' },
-                color: 'text.primary',
+                color: 'rgba(239,243,248,0.78)',
                 width: 40,
                 height: 40,
                 borderRadius: '2px',
-                '&:hover': { bgcolor: 'rgba(27,48,80,0.06)' },
+                '&:hover': { bgcolor: 'rgba(239,243,248,0.08)', color: '#EFF3F8' },
               }}
             >
               <MenuIcon sx={{ fontSize: 22 }} />
@@ -145,9 +171,7 @@ export default function Navbar() {
         </Toolbar>
       </AppBar>
 
-      <Box sx={{ height: { xs: 72, md: 96 } }} aria-hidden />
-
-      {/* Mobile drawer */}
+      {/* Mobile drawer – dark navy */}
       <Drawer
         anchor="right"
         open={drawerOpen}
@@ -155,19 +179,32 @@ export default function Navbar() {
         PaperProps={{
           sx: {
             width: 300,
-            bgcolor: '#EFF3F8',
-            borderLeft: '1px solid #C8D6E8',
+            bgcolor: '#0C1A2E',
+            borderLeft: '1px solid rgba(82,153,200,0.14)',
           },
         }}
       >
         <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 3, py: 2.5 }}>
-            <LocaleSwitcher />
-            <IconButton onClick={() => setDrawerOpen(false)} size="small" sx={{ color: 'text.secondary' }}>
+            <Box
+              sx={{
+                '& .MuiButton-root': {
+                  color: 'rgba(239,243,248,0.5)',
+                  '&:hover': { color: 'rgba(239,243,248,0.85)', bgcolor: 'transparent' },
+                },
+              }}
+            >
+              <LocaleSwitcher />
+            </Box>
+            <IconButton
+              onClick={() => setDrawerOpen(false)}
+              size="small"
+              sx={{ color: 'rgba(239,243,248,0.5)', '&:hover': { color: '#EFF3F8' } }}
+            >
               <CloseIcon fontSize="small" />
             </IconButton>
           </Box>
-          <Divider />
+          <Divider sx={{ borderColor: 'rgba(82,153,200,0.1)' }} />
           <List sx={{ px: 1.5, pt: 1.5, flex: 1 }}>
             {[...navLinks, { key: 'contact' as const, href: '/contact' as const }].map(({ key, href }) => {
               const isActive = pathname === href;
@@ -181,14 +218,15 @@ export default function Navbar() {
                       py: 1.25,
                       px: 2,
                       borderRadius: '2px',
-                      bgcolor: isActive ? 'rgba(27,48,80,0.06)' : 'transparent',
+                      bgcolor: isActive ? 'rgba(82,153,200,0.12)' : 'transparent',
+                      '&:hover': { bgcolor: 'rgba(82,153,200,0.08)' },
                     }}
                   >
                     <ListItemText
                       primary={t(key)}
                       primaryTypographyProps={{
-                        fontWeight: isActive ? 600 : 400,
-                        color: isActive ? 'primary.main' : 'text.primary',
+                        fontWeight: isActive ? 500 : 400,
+                        color: isActive ? '#5299C8' : 'rgba(239,243,248,0.75)',
                         fontSize: '0.9375rem',
                       }}
                     />
