@@ -17,7 +17,10 @@
       "Bash(grep -n \"component={Link}\" C:/Projects/VSCode/MitevaLaw/src/app/\\\\[locale\\\\]/page.tsx C:/Projects/VSCode/MitevaLaw/src/app/\\\\[locale\\\\]/about/page.tsx C:/Projects/VSCode/MitevaLaw/src/app/\\\\[locale\\\\]/practice/page.tsx C:/Projects/VSCode/MitevaLaw/src/app/\\\\[locale\\\\]/academic/page.tsx C:/Projects/VSCode/MitevaLaw/src/app/\\\\[locale\\\\]/contact/page.tsx)",
       "Bash(node -e \"\nconst fs = require\\('fs'\\);\nlet c = fs.readFileSync\\('C:/Projects/VSCode/MitevaLaw/src/app/[locale]/page.tsx', 'utf8'\\);\n\n// Replace <Button component={Link} with <NavButton\nc = c.replace\\(/<Button\\(\\\\s[^>]*?\\)component=\\\\{Link\\\\}\\([^>]*?\\)>/g, '<NavButton\\\\$1\\\\$2>'\\);\n// Replace </Button> that follow NavButton patterns — but we need to be careful\n// Actually replace all Button->NavButton pairs that have component={Link}\n// The above regex should handle opening tags, now fix closing tags\n// Since NavButton wraps Button, we need </NavButton> instead of </Button>\n// But we can't easily distinguish which </Button> to change\n// Better approach: do a full string replacement\n\nfs.writeFileSync\\('C:/Projects/VSCode/MitevaLaw/src/app/[locale]/page.tsx', c, 'utf8'\\);\nconsole.log\\('Done'\\);\n// Check\nconsole.log\\('Remaining component={Link}:', \\(c.match\\(/component=\\\\{Link\\\\}/g\\) || []\\).length\\);\n\")",
       "Bash(node -e \"\nconst fs = require\\('fs'\\);\nlet c = fs.readFileSync\\('C:/Projects/VSCode/MitevaLaw/src/app/[locale]/page.tsx', 'utf8'\\);\n\n// Fix: after each <NavButton ...> block, replace the matching </Button> with </NavButton>\n// Simple approach: replace all </Button> with </NavButton> in this file since we removed all plain Buttons\n// Actually we need to check if there are any plain <Button> \\(without component=Link\\) still in the file\nconst plainButtons = c.match\\(/<Button[^/]/g\\) || [];\nconsole.log\\('Remaining plain <Button> tags:', plainButtons.length\\);\n\n// Replace all </Button> with </NavButton>\nc = c.replace\\(/<\\\\/Button>/g, '</NavButton>'\\);\n\nfs.writeFileSync\\('C:/Projects/VSCode/MitevaLaw/src/app/[locale]/page.tsx', c, 'utf8'\\);\nconsole.log\\('Done'\\);\n\")",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }

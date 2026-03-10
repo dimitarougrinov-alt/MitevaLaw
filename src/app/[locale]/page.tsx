@@ -115,7 +115,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   display: 'flex',
                   alignItems: 'center',
                   gap: 1.5,
-                  animation: 'fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both',
                   '&::before': {
                     content: '""',
                     display: 'inline-block',
@@ -141,24 +140,23 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   color: 'text.primary',
                   mb: 4,
                   whiteSpace: 'pre-line',
-                  animation: 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both',
                 }}
               >
                 {t('hero.title')}
               </Typography>
 
               {/* Divider line */}
-              <Box sx={{ width: 40, height: '1px', bgcolor: 'secondary.main', mb: 4, opacity: 0.7, animation: 'fadeUp 0.6s ease 0.42s both' }} />
+              <Box sx={{ width: 40, height: '1px', bgcolor: 'secondary.main', mb: 4, opacity: 0.7 }} />
 
               {/* Essence tagline */}
               <Typography
                 variant="body1"
-                sx={{ color: 'text.secondary', mb: 5, maxWidth: 460, lineHeight: 1.8, fontStyle: 'italic', fontFamily: 'var(--font-cormorant), serif', fontSize: '1.25rem', animation: 'fadeUp 0.7s ease 0.52s both' }}
+                sx={{ color: 'text.secondary', mb: 5, maxWidth: 460, lineHeight: 1.8, fontStyle: 'italic', fontFamily: 'var(--font-cormorant), serif', fontSize: '1.25rem' }}
               >
                 {t('hero.essence')}
               </Typography>
 
-              <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', animation: 'fadeUp 0.7s ease 0.64s both' }}>
+              <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                 <NavButton
                   
                   href="/contact"
@@ -186,7 +184,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 sx={{
                   position: 'relative',
                   height: { xs: 340, sm: 420, md: 560 },
-                  animation: 'fadeIn 1s ease 0.38s both',
                 }}
               >
                 {/* Decorative gold border offset */}
