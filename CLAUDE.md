@@ -33,13 +33,13 @@ This is a static informational website for **Ani Miteva Attorney at Law** — a 
 
 ## Design System
 
-**Color palette** (forest green + warm gold — mountain/law theme):
-- Primary: `#1F3229` (deep forest green)
-- Secondary/accent: `#C4A84F` (warm gold)
-- Background default: `#F5F4F0` (warm parchment)
+**Color palette** (alpine sky + glacier blue — mountain/law theme):
+- Primary: `#1B3050` (midnight alpine navy)
+- Secondary/accent: `#5299C8` (alpine sky / glacier lake blue)
+- Background default: `#EFF3F8` (cool morning mist)
 - Paper: `#FFFFFF`
-- Text primary: `#1A2820`, Text secondary: `#5E7268`
-- Divider: `#DDD9D0`
+- Text primary: `#111C2D`, Text secondary: `#3E577A`
+- Divider: `#C8D6E8`
 
 **Typography:**
 - Headings: Cormorant Garamond (`var(--font-cormorant)`)
@@ -52,9 +52,9 @@ This is a static informational website for **Ani Miteva Attorney at Law** — a 
 ### ⚠️ CRITICAL — Root layout at `src/app/layout.tsx`
 Minimal pass-through only — real layout is in `[locale]/layout.tsx`.
 
-### ⚠️ CRITICAL — Next.js 16: `proxy.ts` (NOT `middleware.ts`)
-- File is `src/proxy.ts`, exported function is `proxy()` (not `middleware()`)
-- Node.js runtime only
+### i18n Middleware — `src/middleware.ts`
+- Standard Next.js `middleware.ts` with default export (`createMiddleware(routing)`)
+- Matcher covers `/`, `/(bg|en)/:path*`, and the generic catch-all
 
 ### MUI v7
 - Use `palette.mode` not `palette.type`
