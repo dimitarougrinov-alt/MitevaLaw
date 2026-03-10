@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Projects/VSCode/MitevaLaw/src/components/ui/NavButton.tsx"],"sourcesContent":["'use client';\n\nimport Button from '@mui/material/Button';\nimport { Link } from '@/i18n/navigation';\nimport type { ComponentProps } from 'react';\n\ntype NavButtonProps = Omit<ComponentProps<typeof Button>, 'component' | 'href'> & {\n  href: ComponentProps<typeof Link>['href'];\n};\n\nexport default function NavButton({ href, children, ...props }: NavButtonProps) {\n  return (\n    // eslint-disable-next-line @typescript-eslint/no-explicit-any\n    <Button component={Link as any} href={href as any} {...props}>\n      {children}\n    </Button>\n  );\n}\n"],"names":[],"mappings":";;;;;AAEA;AACA;AAHA;;;;AAUe,SAAS,UAAU,EAAE,IAAI,EAAE,QAAQ,EAAE,GAAG,OAAuB;IAC5E,OACE,8DAA8D;kBAC9D,6LAAC,0KAAM;QAAC,WAAW,oIAAI;QAAS,MAAM;QAAc,GAAG,KAAK;kBACzD;;;;;;AAGP;KAPwB"}}]
+}
