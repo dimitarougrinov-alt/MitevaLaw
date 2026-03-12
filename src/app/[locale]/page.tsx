@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations, getMessages } from 'next-intl/server';
+import { getTranslations, getMessages, setRequestLocale } from 'next-intl/server';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -31,6 +31,7 @@ const practiceCardAccents = ['#5299C8', '#3A78A8', '#6BB8D8', '#4E9B8A', '#8A7EB
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'home' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
   const messages = await getMessages({ locale });

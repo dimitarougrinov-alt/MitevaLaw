@@ -61,6 +61,14 @@
       "bioethics": {
         "title": "Bioethics & Medical Law",
         "description": "Legal opinions in bioethics, patients' rights and healthcare regulation."
+      },
+      "conflict": {
+        "title": "Conflict of Interest",
+        "description": "The legal consequences of a conflict of interest established by a final act go beyond removal from office. If proceedings have been initiated, do not delay consulting a specialist."
+      },
+      "confiscation": {
+        "title": "Civil Forfeiture",
+        "description": "Civil forfeiture proceedings under the Forfeiture of Illegally Acquired Assets Act are unprecedented in factual and legal complexity and require in-depth specialist expertise."
       }
     },
     "cta": {
@@ -190,6 +198,22 @@
         "Patients' rights",
         "Healthcare regulation",
         "Research ethics"
+      ]
+    },
+    "conflict": {
+      "title": "Conflict of Interest",
+      "description": "The legal consequences of a conflict of interest established by a final act go beyond removal from office. If proceedings have been initiated, do not delay consulting a specialist.",
+      "items": [
+        "To be added 1",
+        "To be added 2"
+      ]
+    },
+    "confiscation": {
+      "title": "Civil Forfeiture",
+      "description": "Civil forfeiture proceedings under the Forfeiture of Illegally Acquired Assets Act are unprecedented in factual and legal complexity and require in-depth specialist expertise.",
+      "items": [
+        "To be added 1",
+        "To be added 2"
       ]
     },
     "cta": {

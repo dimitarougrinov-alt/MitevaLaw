@@ -4,6 +4,7 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Cormorant, DM_Sans } from 'next/font/google';
 import { routing } from '@/i18n/routing';
+import { setRequestLocale } from 'next-intl/server';
 import ThemeRegistry from '@/components/providers/ThemeRegistry';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -22,6 +23,10 @@ const dmSans = DM_Sans({
   display: 'swap',
 });
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 export const metadata: Metadata = {
   title: {
     default: 'Ani Miteva – Attorney at Law',
@@ -38,6 +43,8 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+
+  setRequestLocale(locale);
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();

@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "out",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "rewrites": [
+      { "source": "/", "destination": "/bg" },
+      { "source": "/za-mene", "destination": "/bg/about" },
+      { "source": "/praktiki", "destination": "/bg/practice" },
+      { "source": "/akademichna-deynost", "destination": "/bg/academic" },
+      { "source": "/kontakti", "destination": "/bg/contact" },
+      { "source": "/en/academic-activity", "destination": "/en/academic" }
+    ]
+  }
+}

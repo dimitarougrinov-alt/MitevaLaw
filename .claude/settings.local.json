@@ -23,7 +23,19 @@
       "Bash(git push:*)",
       "Bash(taskkill /F /IM node.exe 2>/dev/null; echo \"Done killing node processes\")",
       "WebFetch(domain:commons.wikimedia.org)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(grep -n \"const { locale } = await params\" src/app/[locale]/page.tsx src/app/[locale]/about/page.tsx src/app/[locale]/practice/page.tsx src/app/[locale]/academic/page.tsx src/app/[locale]/contact/page.tsx)",
+      "Bash(grep -n \"export default async function\\\\|getTranslations\" src/app/[locale]/page.tsx)",
+      "Bash(grep -n \"export default async function\\\\|const { locale } = await params\" src/app/[locale]/about/page.tsx src/app/[locale]/practice/page.tsx src/app/[locale]/academic/page.tsx src/app/[locale]/contact/page.tsx)",
+      "Bash(npx next:*)",
+      "Bash(node -e \":*)",
+      "Bash(grep -n '\"\"bioethics\"\"\\\\|\"\"cta\"\"\\\\|\"\"confiscation\"\"\\\\|\"\"conflict\"\"' src/messages/en.json)",
+      "Bash(node -e \"JSON.parse\\(require\\(''fs''\\).readFileSync\\(''src/messages/en.json'',''utf8''\\)\\); console.log\\(''OK''\\)\")",
+      "Bash(firebase deploy:*)",
+      "WebFetch(domain:firebase.google.com)",
+      "Bash(firebase experiments:enable webframeworks)",
+      "Bash(firebase init:*)",
+      "Bash(1:*)"
     ]
   }
 }

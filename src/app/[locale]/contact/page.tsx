@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -23,6 +23,7 @@ const iconAccents = ['#5299C8', '#3A78A8', '#6BB8D8', '#4E9B8A'];
 
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'contact' });
   const tFooter = await getTranslations({ locale, namespace: 'footer' });
 
