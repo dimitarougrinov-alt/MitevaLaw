@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getMessages } from 'next-intl/server';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -9,6 +9,8 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PolicyIcon from '@mui/icons-material/Policy';
 import BiotechIcon from '@mui/icons-material/Biotech';
+import BalanceIcon from '@mui/icons-material/Balance';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import NavButton from '@/components/ui/NavButton';
 import AnimateIn from '@/components/ui/AnimateIn';
 import HeroSection from '@/components/home/HeroSection';
@@ -23,14 +25,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const practiceIcons = [GavelIcon, AccountBalanceIcon, PolicyIcon, BiotechIcon];
-const practiceKeys = ['tax', 'financial', 'admin', 'bioethics'] as const;
-const practiceCardAccents = ['#5299C8', '#3A78A8', '#6BB8D8', '#4E9B8A'];
+const practiceIcons = [GavelIcon, AccountBalanceIcon, PolicyIcon, BiotechIcon, BalanceIcon, AccountBalanceWalletIcon];
+const practiceKeys = ['tax', 'financial', 'admin', 'bioethics', 'conflict', 'confiscation'] as const;
+const practiceCardAccents = ['#5299C8', '#3A78A8', '#6BB8D8', '#4E9B8A', '#8A7EB8', '#B87E7E'];
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home' });
   const tCommon = await getTranslations({ locale, namespace: 'common' });
+  const messages = await getMessages({ locale });
+  const aboutCredentials = ((messages as any).home?.about?.credentials ?? []) as string[];
 
   return (
     <>
@@ -93,40 +97,101 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </Box>
 
       {/* ── ABOUT SNIPPET ── */}
-      <Box sx={{ py: { xs: 10, md: 18 }, bgcolor: '#FFFFFF' }}>
+      <Box sx={{ py: { xs: 10, md: 18 }, bgcolor: 'background.default' }}>
         <Container maxWidth="lg" sx={{ px: { xs: 3, md: 5 } }}>
           <AnimateIn>
-          <Grid container spacing={{ xs: 6, md: 10 }} alignItems="center">
-            {/* Photo */}
+          <Grid container spacing={{ xs: 6, md: 10 }} alignItems="flex-start">
+
+            {/* Photo column */}
             <Grid size={{ xs: 12, md: 5 }}>
-              <Box
-                sx={{
-                  position: 'relative',
-                  height: { xs: 300, sm: 380, md: 460 },
-                  borderRadius: '2px',
-                  overflow: 'hidden',
-                  border: '1px solid #C8D6E8',
-                }}
-              >
-                <Image
-                  src="/images/ani-3.jpg"
-                  alt="Адв. д-р Ани Митева"
-                  fill
-                  style={{ objectFit: 'cover', objectPosition: 'center' }}
-                  unoptimized
+              <Box sx={{ position: 'relative' }}>
+
+                {/* Decorative offset frame */}
+                <Box
+                  aria-hidden
+                  sx={{
+                    position: 'absolute',
+                    top: 18,
+                    left: -14,
+                    width: '82%',
+                    height: '88%',
+                    border: '1px solid rgba(82,153,200,0.35)',
+                    borderRadius: '2px',
+                    zIndex: 0,
+                    pointerEvents: 'none',
+                  }}
                 />
+
+                {/* Photo */}
+                <Box
+                  sx={{
+                    position: 'relative',
+                    height: { xs: 320, sm: 420, md: 520 },
+                    borderRadius: '2px',
+                    overflow: 'hidden',
+                    zIndex: 1,
+                    boxShadow: '0 20px 60px rgba(27,48,80,0.12)',
+                  }}
+                >
+                  <Image
+                    src="/images/ani-3.jpg"
+                    alt="Адв. д-р Ани Митева"
+                    fill
+                    style={{ objectFit: 'cover', objectPosition: 'center' }}
+                    unoptimized
+                  />
+                </Box>
+
+                {/* Refined name caption */}
+                <Box
+                  sx={{
+                    mt: 2.5,
+                    pl: 2,
+                    borderLeft: '2px solid #5299C8',
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      display: 'block',
+                      color: '#1B3050',
+                      letterSpacing: '0.14em',
+                      fontSize: '0.68rem',
+                      fontWeight: 600,
+                      fontFamily: 'var(--font-dm-sans)',
+                      textTransform: 'uppercase',
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    Ani Miteva
+                  </Typography>
+                  <Typography
+                    sx={{
+                      display: 'block',
+                      color: '#3E577A',
+                      letterSpacing: '0.08em',
+                      fontSize: '0.62rem',
+                      fontFamily: 'var(--font-dm-sans)',
+                      textTransform: 'uppercase',
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    Attorney at Law · Ph.D. LL.M
+                  </Typography>
+                </Box>
               </Box>
             </Grid>
 
-            {/* Text */}
+            {/* Text column */}
             <Grid size={{ xs: 12, md: 7 }}>
+
+              {/* Overline */}
               <Typography
                 component="p"
                 variant="overline"
                 sx={{
                   color: 'secondary.main',
                   letterSpacing: '0.22em',
-                  mb: 2.5,
+                  mb: 3,
                   display: 'flex',
                   alignItems: 'center',
                   gap: 1.5,
@@ -142,14 +207,64 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               >
                 {t('about.overline')}
               </Typography>
-              <Typography variant="h2" sx={{ mb: 3.5, lineHeight: 1.12 }}>
-                {t('about.title')}
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mb: 5, lineHeight: 1.85, maxWidth: 520 }}>
+
+              {/* Body paragraph in italic Cormorant */}
+              <Typography
+                sx={{
+                  fontFamily: 'var(--font-cormorant), serif',
+                  fontSize: { xs: '1.2rem', md: '1.35rem' },
+                  lineHeight: 1.7,
+                  color: 'text.primary',
+                  fontStyle: 'italic',
+                  mb: 4,
+                  pl: 2.5,
+                  borderLeft: '2px solid rgba(82,153,200,0.4)',
+                }}
+              >
                 {t('about.body')}
               </Typography>
+
+              {/* Credentials — elegant divided list */}
+              <Box component="ul" sx={{ listStyle: 'none', p: 0, m: 0, mb: 4 }}>
+                {aboutCredentials.map((item, i) => (
+                  <Box
+                    component="li"
+                    key={i}
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 2,
+                      py: 1.25,
+                      borderBottom: '1px solid rgba(200,214,232,0.55)',
+                      ...(i === 0 && { borderTop: '1px solid rgba(200,214,232,0.55)' }),
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 5,
+                        height: 5,
+                        borderRadius: '50%',
+                        bgcolor: 'secondary.main',
+                        flexShrink: 0,
+                        opacity: 0.7,
+                      }}
+                    />
+                    <Typography
+                      sx={{
+                        fontFamily: 'var(--font-cormorant), serif',
+                        fontSize: '1.1rem',
+                        lineHeight: 1.5,
+                        color: 'text.primary',
+                        letterSpacing: '0.01em',
+                      }}
+                    >
+                      {item}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+
               <NavButton
-                
                 href="/about"
                 variant="outlined"
                 color="primary"
@@ -158,6 +273,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 {t('about.link')}
               </NavButton>
             </Grid>
+
           </Grid>
           </AnimateIn>
         </Container>
@@ -255,7 +371,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                     mb: 2.5,
                   }}
                 >
-                  {t('hero.essence')}
+                  {t('practice.quote')}
                 </Typography>
 
                 {/* Attribution */}
@@ -295,7 +411,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center',
+                justifyContent: 'flex-start',
                 position: 'relative',
                 '&::before': {
                   content: '""',
@@ -335,7 +451,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <Typography variant="h2" sx={{ mb: 2, lineHeight: 1.1 }}>
                   {t('practice.title')}
                 </Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ mb: 5, maxWidth: 480 }}>
+                <Typography variant="body1" color="text.secondary" sx={{ mb: 5 }}>
                   {t('practice.subtitle')}
                 </Typography>
               </AnimateIn>

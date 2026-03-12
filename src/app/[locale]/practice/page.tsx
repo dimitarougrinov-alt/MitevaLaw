@@ -9,6 +9,8 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PolicyIcon from '@mui/icons-material/Policy';
 import BiotechIcon from '@mui/icons-material/Biotech';
+import BalanceIcon from '@mui/icons-material/Balance';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import CheckIcon from '@mui/icons-material/Check';
 import NavButton from '@/components/ui/NavButton';
 import AnimateIn from '@/components/ui/AnimateIn';
@@ -25,6 +27,8 @@ const areas = [
   { key: 'financial', Icon: AccountBalanceIcon,  accent: '#3A78A8' },
   { key: 'admin',     Icon: PolicyIcon,          accent: '#6BB8D8' },
   { key: 'bioethics', Icon: BiotechIcon,         accent: '#4E9B8A' },
+  { key: 'conflict',      Icon: BalanceIcon,                accent: '#8A7EB8' },
+  { key: 'confiscation',  Icon: AccountBalanceWalletIcon,   accent: '#B87E7E' },
 ] as const;
 
 export default async function PracticePage({ params }: { params: Promise<{ locale: string }> }) {

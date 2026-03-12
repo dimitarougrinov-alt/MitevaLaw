@@ -108,7 +108,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                       variant="caption"
                       sx={{ color: 'text.secondary', letterSpacing: '0.07em', fontSize: '0.72rem' }}
                     >
-                      ATTORNEY AT LAW · Ph.D.
+                      ATTORNEY AT LAW - Ph.D. LL.M
                     </Typography>
                   </Box>
                 </Box>

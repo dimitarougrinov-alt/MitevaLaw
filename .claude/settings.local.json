@@ -20,7 +20,10 @@
       "Bash(npm run:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(taskkill /F /IM node.exe 2>/dev/null; echo \"Done killing node processes\")",
+      "WebFetch(domain:commons.wikimedia.org)",
+      "WebSearch"
     ]
   }
 }

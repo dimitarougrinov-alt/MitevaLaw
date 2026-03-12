@@ -25,12 +25,19 @@
       "yearsLabel": "Years of experience",
       "publications": "30+",
       "publicationsLabel": "Academic publications",
-      "uniLabel": "Lecturer, Sofia University",
+      "uniLabel": "Lecturer, SU, MU Sofia",
       "sakLabel": "Attorney, Sofia Bar"
     },
     "about": {
       "overline": "About",
-      "title": "Law is a science. Applying it — an art.",
+      "credentials": [
+        "Master of Laws",
+        "Master of Advanced Studies in International Taxation, Lausanne, Switzerland",
+        "Doctor of Laws (Financial Law)",
+        "Attorney at Law",
+        "Law Lecturer",
+        "Disciplinary Judge"
+      ],
       "body": "Adv. Dr. Ani Miteva specialises in international tax and financial law. Holding a doctorate from Sofia University and an advanced degree from the University of Lausanne, she combines academic depth with practical precision — finding the right path to the summit of every legal challenge.",
       "link": "Full biography"
     },
@@ -38,6 +45,7 @@
       "overline": "Practice Areas",
       "title": "Legal assistance with precision",
       "subtitle": "Specialised counsel in tax, financial and administrative law.",
+      "quote": "Responsibility — and indeed humanity — demand that we do not exceed our competence, and no lawyer's competence is unlimited",
       "tax": {
         "title": "Tax Law",
         "description": "International tax planning, double taxation treaties and representation before the National Revenue Agency."
@@ -227,19 +235,15 @@
           "institution": "Faculty of Law, Sofia University \"St. Clement of Ohrid\"",
           "role": "Senior Assistant Dr.",
           "period": "since 2019",
-          "courses": "Financial Law, Tax Law"
-        },
-        {
-          "institution": "Ministry of Interior Academy",
-          "role": "Lecturer",
-          "period": "2018",
-          "courses": "Financial and tax law"
+          "courses": "Financial Law, Tax Law",
+          "photo": "/images/sofia-university.jpg"
         },
         {
           "institution": "Medical University Sofia",
           "role": "Assistant",
           "period": "2015",
-          "courses": "Faculty of Public Health"
+          "courses": "Faculty of Public Health",
+          "photo": "/images/medical-university.jpg"
         }
       ]
     },
